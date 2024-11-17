@@ -97,20 +97,22 @@ public class V2048 extends JFrame {
     }
 
     private void updateBoard() {
-        boardPanel.removeAll();
-        for (ArrayList<Integer> row : board) {
-            for (Integer value : row) {
-                JPanel cell = new JPanel();
-                cell.setBackground(getColor(value));
-                JLabel label = new JLabel(value == 0 ? "" : String.valueOf(value));
-                label.setFont(new Font("Arial", Font.BOLD, 24));
-                label.setForeground(Color.BLACK);
-                cell.add(label);
-                boardPanel.add(cell);
+        if (boardPanel != null){
+            boardPanel.removeAll();
+            for (ArrayList<Integer> row : board) {
+                for (Integer value : row) {
+                    JPanel cell = new JPanel();
+                    cell.setBackground(getColor(value));
+                    JLabel label = new JLabel(value == 0 ? "" : String.valueOf(value));
+                    label.setFont(new Font("Arial", Font.BOLD, 24));
+                    label.setForeground(Color.BLACK);
+                    cell.add(label);
+                    boardPanel.add(cell);
+                }
             }
+            boardPanel.revalidate();
+            boardPanel.repaint();
         }
-        boardPanel.revalidate();
-        boardPanel.repaint();
     }
 
     private Color getColor(int value) {
